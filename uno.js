@@ -16,8 +16,13 @@ function mostrar()
 	let cantQuat;
 	let cantIgnifugo;
 	let cantCombustible;
-	let cantExplosivo;
+	let cantExplosivo; 
+	let canTotalIac; //cantidad total de iac con precio menor a 200
+	let flag;
+	let productoMax;
+	let marcaMax;
 
+	flag = 0;
 	contAlcohol = 0;
 	contIac = 0;
 	contQuat = 0;
@@ -27,6 +32,8 @@ function mostrar()
 	cantIgnifugo = 0;
 	cantCombustible = 0;
 	cantExplosivo = 0;
+	precioMax = 0;
+	productoMax = 0;
 
 	for(let i = 0;i<5;i++)
 	{
@@ -56,6 +63,8 @@ function mostrar()
 			tipoInflamable = prompt("ingrese un tipo valido de inflamables (ignifugo / combustible / explosivo)").toLowerCase();
 		}
 
+		marca = prompt("ingrese una marca: ");
+
 		if(producto == "ALCOHOL")
 		{
 			contAlcohol ++;
@@ -65,6 +74,10 @@ function mostrar()
 		{
 			contIac ++;
 			cantIac += cantidad;
+			if(precio <= 200)
+			{
+				canTotalIac += cantidad;
+			}
 		}
 		else
 		{
@@ -85,6 +98,13 @@ function mostrar()
 			cantExplosivo += cantidad;
 		}
 
+		if(flag==0 || precio > precioMax)
+		{
+			flag == 1;
+			productoMax=producto;
+			marcaMax=marca
+		}
+
 
 
 
@@ -95,19 +115,22 @@ function mostrar()
 
 	alert("el promedio de cantidad del alcohol es "+promAlcohol+", el del Iac "+promIac+" y el del Quat"+promQuat);
 
-		if(cantIgnifugo > cantCombustible && cantIgnifugo > cantExplosivo)
-		{
-			alert("el tipo de inflamable con mas cantidad es el ignifugo con " + cantIgnifugo);
-		}
-		else if(cantCombustible > cantIgnifugo && cantCombustible > cantExplosivo)
-		{
-			alert("el tipo de inflamable con mayor cantidad es el combustible con "+cantCombustible);
-		}
-		else
-		{
-			alert("el tipo de inflamable con mayor cantidad es el explosivo con "+cantExplosivo);
+	if(cantIgnifugo > cantCombustible && cantIgnifugo > cantExplosivo)
+	{
+		alert("el tipo de inflamable con mas cantidad es el ignifugo con " + cantIgnifugo);
+	}
+	else if(cantCombustible > cantIgnifugo && cantCombustible > cantExplosivo)
+	{
+		alert("el tipo de inflamable con mayor cantidad es el combustible con "+cantCombustible);
+	}
+	else
+	{
+		alert("el tipo de inflamable con mayor cantidad es el explosivo con "+cantExplosivo);
+	}
 
-		}
+	alert("la cantidad total de iac comprados con el precio menor a 200 es de "+canTotalIac);
+
+	alert("la marca y tipo del producto mas caro es "+marcaMax + " y "+productoMax);
 }
 
 
@@ -124,6 +147,6 @@ Se debe Informar al usuario lo siguiente:
 
 a) El promedio de cantidad por tipo de producto(terminado)
 b) El tipo de inflamable con más cantidad de unidades en total de la compra(terminado)
-c) Cuántas unidades de IAC con precios menos a 200 (inclusive) se compraron en total
-d) la marca y tipo del más caro de los productos
+c) Cuántas unidades de IAC con precios menos a 200 (inclusive) se compraron en total (terminado)
+d) la marca y tipo del más caro de los productos(terminado)
 */
