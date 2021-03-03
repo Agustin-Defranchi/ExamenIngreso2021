@@ -25,7 +25,15 @@ function mostrar()
 		let materiaMax;
 		let edadMatMax;
 		let nombreMatMax;
+		let validacionb;
+		let validacionc1;
+		let validacionc2;
+		let validaciond;
+		validaciond=0;
+		validacionc2=0;
+		validacionc1=0;
 	flagmateris =0;
+	validaciconb=0;
 
 
 	cantF=0;
@@ -78,6 +86,7 @@ function mostrar()
 		}
 		if(sexo == "s")
 		{
+			validacionc2==1
 			acumNotaF += nota;
 			cantF ++ ;
 			if(flag==0 || nota>promMax)
@@ -92,6 +101,7 @@ function mostrar()
 		{
 			acumnotaM +=nota;
 			cantM++;
+			validacionc1==1
 		}
 		if(cursada == "libre")
 		{
@@ -99,6 +109,7 @@ function mostrar()
 			{
 				flagEdad==1;
 				nombreMin = nombre;
+				validaciconb==1;
 			}
 		}
 		if(flagmateris==0|| cantidad>materiaMax)
@@ -118,11 +129,36 @@ function mostrar()
 	}while(salir != "s")
 
 	alert("el nombre del mejor promedio " + nombreMax);
-	alert("el nombre del alumno mas joven querinde libre es "+nombreMin);
+	if(validaciconb==1)
+	{
+		alert("el nombre del alumno mas joven querinde libre es "+nombreMin);
+	}
+	else
+	{
+		alert("no se ingresaron alumnos que cursan libre");
+	}
 	promF=acumNotaF/cantF;
 	promM=acumnotaM/cantM;
-	alert("el promedio masculino es "+promM + " y  el orimedio femenino es "+promF);
-	alert("el nombre y la edad del que cursa mas materias de forma no remota es" +nombreMatMax +" y "+edadMatMax+"años");
+	if(validacionc1==1 && validacionc2==1)
+	{
+		alert("el promedio masculino es "+promM + " y  el orimedio femenino es "+promF);
+	}
+	else if(validacionc1 ==1 && validacionc2==0)
+	{
+		alert("el promedio masculino es "+promM + " y  el orimedio femenino no existe")
+	}
+	else if(validacionc1==0&&validacionc2==1)
+	{
+		alert("el primedio femenino es "+promF +" y el promedio masculino no existe");
+	}
+	if(validaciond == 1)
+	{
+		alert("el nombre y la edad del que cursa mas materias de forma no remota es" +nombreMatMax +" y "+edadMatMax+"años");
+	}
+	else
+	{
+		alert("solo se ingresaron alumnos que cursan remotamente");
+	}
 
 
 
